@@ -60,6 +60,9 @@
     <xsl:template match="rule">
         <xsl:variable name="ruleName" select="text()" />
         <a href="#">
+            <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
+                <xsl:attribute name="class">warning</xsl:attribute>
+            </xsl:if>
             <div class="grade">
                 <xsl:variable name="grade">
                     <xsl:call-template name="convertToGrade">
@@ -77,6 +80,9 @@
                 <span>
                     <xsl:apply-templates select="/response/rules/*[name() = $ruleName]" mode="convertUnit" />
                 </span>
+                <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
+                    <span class="icon-warning"></span>
+                </xsl:if>
             </div>
             <div class="info">
                 <span class="icon-question"></span>

@@ -23,7 +23,7 @@
                         <xsl:value-of select="format-number(value/text() div 1000000, '#.##')" /> Mb
                     </xsl:when>
                     <xsl:when test="value &gt; 1000">
-                        <xsl:value-of select="format-number(value/text() div 1000, '#.#')" /> Kb
+                        <xsl:value-of select="format-number(value/text() div 1000, '#.#')" /> kb
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="value" /> bytes
