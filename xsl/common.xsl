@@ -17,16 +17,22 @@
     <!-- Affichage des unités -->
     <xsl:template match="*" mode="convertUnit">
         <xsl:choose>
-            <xsl:when test="policy/unit = 'bytes' and value &gt; 1024">
-                <xsl:value-of select="format-number(value/text() div 1024, '#.#')" /> Kb
-            </xsl:when>
             <xsl:when test="policy/unit = 'bytes'">
-                <xsl:value-of select="value" /> bytes
+                <xsl:choose>
+                    <xsl:when test="value &gt; 1000000">
+                        <xsl:value-of select="format-number(value/text() div 1000000, '#.##')" /> Mb
+                    </xsl:when>
+                    <xsl:when test="value &gt; 1000">
+                        <xsl:value-of select="format-number(value/text() div 1000, '#.#')" /> Kb
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="value" /> bytes
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="value" />
             </xsl:otherwise>
-
         </xsl:choose>
     </xsl:template>
 
