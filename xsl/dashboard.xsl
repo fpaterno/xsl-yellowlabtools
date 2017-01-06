@@ -1,76 +1,87 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:import href="common.xsl"/>
+    <xsl:import href="common.xsl"/>
 
-	<xsl:template match="/">
-		<html>
-			<head>
-				<link rel="stylesheet" href="ressources/styles.css" />
-			</head>
-			<body>
-				<div class="summary board">
-					<div class="globalScore">
-						<div>
-							<h2>Global score</h2>
-							<div class="globalScoreDisplay">
-								<xsl:variable name="globalGrade">
-									<xsl:call-template name="convertToGrade">
-										<xsl:with-param name="score" select="/response/scoreProfiles/generic/globalScore" />
-									</xsl:call-template>
-								</xsl:variable>
-								<div class="globalGrade {$globalGrade}">
-									<xsl:value-of select="$globalGrade" />
-								</div>
+    <xsl:template match="/">
+        <html>
+            <head>
+                <link rel="stylesheet" href="ressources/styles.css" />
+            </head>
+            <body>
+                <div class="summary board">
+                    <div class="globalScore">
+                        <div>
+                            <h2>Global score</h2>
+                            <div class="globalScoreDisplay">
+                                <xsl:variable name="globalGrade">
+                                    <xsl:call-template name="convertToGrade">
+                                        <xsl:with-param name="score" select="/response/scoreProfiles/generic/globalScore" />
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                <div class="globalGrade {$globalGrade}">
+                                    <xsl:value-of select="$globalGrade" />
+                                </div>
 
-								<div class="on100"><xsl:value-of select="/response/scoreProfiles/generic/globalScore" />/100</div>
-							</div>
-						</div>
-					</div>
-					<h2>Score details</h2>
-					<div class="notations">
-						<xsl:for-each select="//scoreProfiles/generic/categories/*">
-							<div>
-								<xsl:variable name="categoryGrade">
-									<xsl:call-template name="convertToGrade">
-										<xsl:with-param name="score" select="categoryScore" />
-									</xsl:call-template>
-								</xsl:variable>
-								<div class="categoryScore {$categoryGrade}"><xsl:value-of select="$categoryGrade" /></div>
-								<div class="category"><xsl:value-of select="label" /></div>
-								<div class="criteria">
-									<div class="table" title="Click to see details">
-										<xsl:apply-templates select="rules/rule" />
-									</div>
-								</div>
-							</div>
-						</xsl:for-each>
-					</div>
-				</div>
-			</body>
-		</html>
-	</xsl:template>
+                                <div class="on100">
+                                    <xsl:value-of select="/response/scoreProfiles/generic/globalScore" />/100</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Score details</h2>
+                    <div class="notations">
+                        <xsl:for-each select="//scoreProfiles/generic/categories/*">
+                            <div>
+                                <xsl:variable name="categoryGrade">
+                                    <xsl:call-template name="convertToGrade">
+                                        <xsl:with-param name="score" select="categoryScore" />
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                <div class="categoryScore {$categoryGrade}">
+                                    <xsl:value-of select="$categoryGrade" />
+                                </div>
+                                <div class="category">
+                                    <xsl:value-of select="label" />
+                                </div>
+                                <div class="criteria">
+                                    <div class="table" title="Click to see details">
+                                        <xsl:apply-templates select="rules/rule" />
+                                    </div>
+                                </div>
+                            </div>
+                        </xsl:for-each>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </xsl:template>
 
-	<!-- Gestion d'une ligne de règle -->
-	<xsl:template match="rule">
-		<xsl:variable name="ruleName" select="text()" />
-		<a href="#">
-			<div class="grade">
-				<xsl:variable name="grade">
-					<xsl:call-template name="convertToGrade">
-						<xsl:with-param name="score" select="/response/rules/*[name() = $ruleName]/score" />
-					</xsl:call-template>
-				</xsl:variable>
-				<div class="{$grade}"><xsl:value-of select="$grade" /></div>
-			</div>
-			<div class="label"><xsl:value-of select="/response/rules/*[name() = $ruleName]/policy/label" /></div>
-			<div class="result">
- 				<span>
-					<xsl:apply-templates select="/response/rules/*[name() = $ruleName]" mode="convertUnit" />
-				</span>
-			</div>
-			<div class="info"><span class="icon-question"></span></div>
-		</a>
-	</xsl:template>
+    <!-- Gestion d'une ligne de règle -->
+    <xsl:template match="rule">
+        <xsl:variable name="ruleName" select="text()" />
+        <a href="#">
+            <div class="grade">
+                <xsl:variable name="grade">
+                    <xsl:call-template name="convertToGrade">
+                        <xsl:with-param name="score" select="/response/rules/*[name() = $ruleName]/score" />
+                    </xsl:call-template>
+                </xsl:variable>
+                <div class="{$grade}">
+                    <xsl:value-of select="$grade" />
+                </div>
+            </div>
+            <div class="label">
+                <xsl:value-of select="/response/rules/*[name() = $ruleName]/policy/label" />
+            </div>
+            <div class="result">
+                <span>
+                    <xsl:apply-templates select="/response/rules/*[name() = $ruleName]" mode="convertUnit" />
+                </span>
+            </div>
+            <div class="info">
+                <span class="icon-question"></span>
+            </div>
+        </a>
+    </xsl:template>
 
 </xsl:stylesheet>

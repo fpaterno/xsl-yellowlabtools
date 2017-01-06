@@ -1,33 +1,33 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<!-- Conversion d'un score en grade -->
-	<xsl:template name="convertToGrade">
-		<xsl:param name="score" />
-		<xsl:choose>
-			<xsl:when test="$score &gt; 80">A</xsl:when>
-			<xsl:when test="$score &gt; 60">B</xsl:when>
-			<xsl:when test="$score &gt; 40">C</xsl:when>
-			<xsl:when test="$score &gt; 20">D</xsl:when>
-			<xsl:when test="$score &gt; 0">E</xsl:when>
-			<xsl:otherwise>F</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
+    <!-- Conversion d'un score en grade -->
+    <xsl:template name="convertToGrade">
+        <xsl:param name="score" />
+        <xsl:choose>
+            <xsl:when test="$score &gt; 80">A</xsl:when>
+            <xsl:when test="$score &gt; 60">B</xsl:when>
+            <xsl:when test="$score &gt; 40">C</xsl:when>
+            <xsl:when test="$score &gt; 20">D</xsl:when>
+            <xsl:when test="$score &gt; 0">E</xsl:when>
+            <xsl:otherwise>F</xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
-	<!-- Affichage des unités -->
-	<xsl:template match="*" mode="convertUnit">
-		<xsl:choose>
-			<xsl:when test="policy/unit = 'bytes' and value &gt; 1024">
-				<xsl:value-of select="format-number(value/text() div 1024, '#.#')" /> Kb
-			</xsl:when>
-			<xsl:when test="policy/unit = 'bytes'">
-				<xsl:value-of select="value" /> bytes
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="value" />
-			</xsl:otherwise>
+    <!-- Affichage des unités -->
+    <xsl:template match="*" mode="convertUnit">
+        <xsl:choose>
+            <xsl:when test="policy/unit = 'bytes' and value &gt; 1024">
+                <xsl:value-of select="format-number(value/text() div 1024, '#.#')" /> Kb
+            </xsl:when>
+            <xsl:when test="policy/unit = 'bytes'">
+                <xsl:value-of select="value" /> bytes
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="value" />
+            </xsl:otherwise>
 
-		</xsl:choose>
-	</xsl:template>
+        </xsl:choose>
+    </xsl:template>
 
 </xsl:stylesheet>
