@@ -81,6 +81,7 @@
                     <xsl:apply-templates select="/response/rules/*[name() = $ruleName]" mode="convertUnit" />
                 </span>
                 <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
+                    <xsl:text> </xsl:text>
                     <span class="icon-warning"></span>
                 </xsl:if>
             </div>
