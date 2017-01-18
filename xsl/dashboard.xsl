@@ -78,7 +78,7 @@
     <!-- Gestion d'une ligne de règle -->
     <xsl:template match="rule">
         <xsl:variable name="ruleName" select="text()"/>
-        <a href="#">
+        <a href="{$ruleName}.html">
             <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
                 <xsl:attribute name="class">warning</xsl:attribute>
             </xsl:if>
@@ -97,7 +97,10 @@
             </div>
             <div class="result">
                 <span>
-                    <xsl:apply-templates select="/response/rules/*[name() = $ruleName]" mode="convertUnit"/>
+                    <xsl:call-template name="convertUnit">
+                        <xsl:with-param name="value" select="/response/rules/*[name() = $ruleName]/value" />
+                        <xsl:with-param name="unit" select="/response/rules/*[name() = $ruleName]/policy/unit"/>
+                    </xsl:call-template>
                 </span>
                 <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
                     <xsl:text> </xsl:text>

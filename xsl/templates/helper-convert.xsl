@@ -15,25 +15,27 @@
     </xsl:template>
 
     <!-- Affichage des unités -->
-    <xsl:template match="*" mode="convertUnit">
+    <xsl:template name="convertUnit">
+        <xsl:param name="value" />
+        <xsl:param name="unit" />
         <xsl:choose>
-            <xsl:when test="policy/unit = 'bytes'">
+            <xsl:when test="$unit = 'bytes'">
                 <xsl:choose>
-                    <xsl:when test="value &gt; 1000000">
-                        <xsl:value-of select="format-number(value/text() div 1000000, '#.##')" />
+                    <xsl:when test="$value &gt; 1000000">
+                        <xsl:value-of select="format-number($value div 1000000, '#.##')" />
                         <xsl:text> Mb</xsl:text>
                     </xsl:when>
-                    <xsl:when test="value &gt; 1000">
-                        <xsl:value-of select="format-number(value/text() div 1000, '#.#')" />
+                    <xsl:when test="$value &gt; 1000">
+                        <xsl:value-of select="format-number($value div 1000, '#.#')" />
                         <xsl:text> kb</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="value" />
+                        <xsl:value-of select="$value" />
                         <xsl:text> bytes</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="value" /></xsl:otherwise>
+            <xsl:otherwise><xsl:value-of select="$value" /></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 

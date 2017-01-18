@@ -12,16 +12,17 @@
             <xsl:call-template name="head"/>
             <body>
                 <xsl:call-template name="header"/>
-                <div class="screenshot board">
-                    <h2>Screenshot</h2>
-                    <div class="screenshotWrapper desktop">
-                        <div>
-                            <img class="screenshotImage" src="{/response/params/options/screenshot}"/>
+                <div id="body">
+                    <xsl:call-template name="sub-header"/>
+                    <div class="screenshot board">
+                        <h2>Screenshot</h2>
+                        <div class="screenshotWrapper desktop">
+                            <div>
+                                <img class="screenshotImage" src="{/response/params/options/screenshot}"/>
+                            </div>
                         </div>
-                    </div>
-                    <p>(scroll on the screenshot to see under the fold)</p>
-                    <div class="backToDashboard">
-                        <a href="index.html">Back to dashboard</a>
+                        <p>(scroll on the screenshot to see under the fold)</p>
+                        <xsl:call-template name="back-to-dashboard"/>
                     </div>
                 </div>
             </body>
