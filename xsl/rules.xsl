@@ -16,7 +16,9 @@
                     <xsl:call-template name="sub-header"/>
                     <div class="rule board">
                         <xsl:call-template name="back-to-dashboard"/>
-                        <xsl:apply-templates select="/response/rules/totalWeight" mode="ruleDetail"/>
+                        <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="ruleDetail"/>
+                        <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="offendersDetailByType"/>
+                        <xsl:call-template name="back-to-dashboard"/>
                     </div>
                 </div>
             </body>

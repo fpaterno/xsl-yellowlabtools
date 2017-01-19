@@ -3,6 +3,7 @@
 
     <xsl:template name="head">
         <head>
+            <title>Yellow Lab Tools</title>
             <link rel="stylesheet" href="ressources/styles.css"/>
         </head>
     </xsl:template>
