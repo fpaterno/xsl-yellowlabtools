@@ -1,9 +1,8 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:import href="templates/helper-convert.xsl"/>
-    <xsl:include href="templates/html-meta.xsl"/>
-    <xsl:include href="templates/html-sections.xsl"/>
+    <xsl:include href="templates/meta.xsl"/>
+    <xsl:include href="templates/sections.xsl"/>
 
     <xsl:output method="html" indent="yes"/>
 

@@ -1,9 +1,12 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:import href="templates/helper-convert.xsl"/>
-    <xsl:include href="templates/html-meta.xsl"/>
-    <xsl:include href="templates/html-sections.xsl"/>
+    <xsl:import href="templates/rules.xsl"/>
+    <xsl:import href="templates/offenders.xsl"/>
+
+    <xsl:include href="templates/helpers.xsl"/>
+    <xsl:include href="templates/meta.xsl"/>
+    <xsl:include href="templates/sections.xsl"/>
 
     <xsl:output method="html" indent="yes"/>
 
@@ -17,7 +20,7 @@
                     <div class="rule board">
                         <xsl:call-template name="back-to-dashboard"/>
                         <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="ruleDetail"/>
-                        <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="offendersDetailByType"/>
+                        <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="offendersDetail"/>
                         <xsl:call-template name="back-to-dashboard"/>
                     </div>
                 </div>

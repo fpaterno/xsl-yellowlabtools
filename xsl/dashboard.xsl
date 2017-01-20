@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:import href="templates/helper-convert.xsl"/>
-    <xsl:include href="templates/html-meta.xsl"/>
-    <xsl:include href="templates/html-sections.xsl"/>
+    <xsl:include href="templates/helpers.xsl"/>
+    <xsl:include href="templates/meta.xsl"/>
+    <xsl:include href="templates/sections.xsl"/>
 
     <xsl:output method="html" indent="yes"/>
 
@@ -75,7 +75,7 @@
         </html>
     </xsl:template>
 
-    <!-- Gestion d'une ligne de règle -->
+    <!-- Manage 1 rule result -->
     <xsl:template match="rule">
         <xsl:variable name="ruleName" select="text()"/>
         <a href="{$ruleName}.html">

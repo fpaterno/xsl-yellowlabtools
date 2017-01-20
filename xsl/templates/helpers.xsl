@@ -42,8 +42,8 @@
     <!-- Césure de chaînes -->
     <xsl:template name="minimizeString">
         <xsl:param name="value" />
-        <xsl:value-of select="substring($value, 0, 27)" />
+        <xsl:value-of select="substring($value, 0, 40)" />
         <xsl:text>...</xsl:text>
-        <xsl:value-of select="substring($value, string-length($value) - 28)" />
+        <xsl:value-of select="substring($value, string-length($value) - 40)" />
     </xsl:template>
 </xsl:stylesheet>

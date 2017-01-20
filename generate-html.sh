@@ -14,7 +14,9 @@ xsltproc $XSL_DIR/dashboard.xsl $XML_FILE > $OUTPUT_DIR/index.html
 xsltproc $XSL_DIR/screenshot.xsl $XML_FILE > $OUTPUT_DIR/screenshot.html
 
 # Generate rules pages
-RULES="totalWeight imageOptimization gzipCompression fileMinification"
+PAGE_WEIGHT="totalWeight imageOptimization gzipCompression fileMinification"
+REQUESTS="totalRequests"
+RULES="$PAGE_WEIGHT $REQUESTS"
 
 for RULE in $RULES
 do
