@@ -78,8 +78,9 @@
     <!-- Manage 1 rule result -->
     <xsl:template match="rule">
         <xsl:variable name="ruleName" select="text()"/>
+        <xsl:variable name="isWarning" select="/response/rules/*[name() = $ruleName]/abnormal = 'true'" />
         <a href="{$ruleName}.html">
-            <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
+            <xsl:if test="$isWarning">
                 <xsl:attribute name="class">warning</xsl:attribute>
             </xsl:if>
             <div class="grade">
@@ -102,7 +103,7 @@
                         <xsl:with-param name="unit" select="/response/rules/*[name() = $ruleName]/policy/unit"/>
                     </xsl:call-template>
                 </span>
-                <xsl:if test="/response/rules/*[name() = $ruleName]/value &gt; /response/rules/*[name() = $ruleName]/policy/isAbnormalThreshold">
+                <xsl:if test="$isWarning">
                     <xsl:text> </xsl:text>
                     <span class="icon-warning"></span>
                 </xsl:if>
