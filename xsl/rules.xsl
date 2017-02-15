@@ -1,9 +1,13 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:import href="offenders/byType.xsl"/>
+    <xsl:import href="offenders/totalWeight.xsl"/>
+    <xsl:import href="offenders/imageOptimization.xsl"/>
+    <xsl:import href="offenders/totalRequests.xsl"/>
+    <xsl:import href="offenders/domains.xsl"/>
+    <xsl:import href="offenders/notFound.xsl"/>
+
     <xsl:import href="offenders/gainFiles.xsl"/>
-    <xsl:import href="offenders/gainImages.xsl"/>
 
     <xsl:include href="templates/helpers.xsl"/>
     <xsl:include href="templates/meta.xsl"/>
@@ -21,6 +25,7 @@
                     <div class="rule board">
                         <xsl:call-template name="back-to-dashboard"/>
                         <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="ruleDetail"/>
+                        <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="ruleAbnormal"/>
                         <xsl:apply-templates select="/response/rules/*[name() = $rule]" mode="offendersDetail"/>
                         <xsl:call-template name="back-to-dashboard"/>
                     </div>
@@ -31,22 +36,43 @@
 
     <!-- Offenders list -->
     <xsl:template match="/response/rules/*" mode="offendersDetail">
+        <xsl:variable name="section" select="name()" />
         <xsl:choose>
-            <xsl:when test="offendersObj/list/totalWeight">
-                <xsl:apply-templates select="current()" mode="offendersByType" />
+
+            <!-- Specific rule offenders -->
+            <xsl:when test="$section = 'totalWeight'">
+                <xsl:apply-templates select="current()" mode="offendersTotalWeight" />
             </xsl:when>
+            <xsl:when test="$section = 'imageOptimization'">
+                <xsl:apply-templates select="current()" mode="offendersImageOptimization" />
+            </xsl:when>
+            <xsl:when test="$section = 'totalRequests'">
+                <xsl:apply-templates select="current()" mode="offendersTotalRequests" />
+            </xsl:when>
+            <xsl:when test="$section = 'domains'">
+                <xsl:apply-templates select="current()" mode="offendersDomains" />
+            </xsl:when>
+            <xsl:when test="$section = 'notFound'">
+                <xsl:apply-templates select="current()" mode="offendersNotFound" />
+            </xsl:when>
+
+            <!-- Grouped rules offenders -->
+            <!-- gzipCompression, fileMinification -->
             <xsl:when test="offendersObj/list/files">
                 <xsl:apply-templates select="current()" mode="offendersGainFiles" />
             </xsl:when>
-            <xsl:when test="offendersObj/list/images">
-                <xsl:apply-templates select="current()" mode="offendersGainImages" />
-            </xsl:when>
-            <!--
-            <xsl:otherwise>
-                <xsl:apply-templates select="offendersObj/list" mode="offendersList" />
-            </xsl:otherwise>
-            -->
         </xsl:choose>
+
+    </xsl:template>
+
+    <!-- Abnormal rule -->
+    <xsl:template match="/response/rules/*" mode="ruleAbnormal">
+        <xsl:if test="abnormal/text() = 'true'">
+            <div class="warning">
+                <h3>Warning</h3> 
+                <p>This rule reached the abnormality threshold, which means there is a real problem you should care about.</p> 
+            </div>
+        </xsl:if>
     </xsl:template>
 
     <!-- Rules details -->

@@ -43,8 +43,33 @@
     <xsl:template name="minimizeString">
         <xsl:param name="value" />
         <xsl:param name="size" select="40" />
-        <xsl:value-of select="substring($value, 0, $size)" />
-        <xsl:text>...</xsl:text>
-        <xsl:value-of select="substring($value, string-length($value) - $size)" />
+        <xsl:choose>
+            <xsl:when test="string-length($value) &gt; $size">
+                <xsl:value-of select="substring($value, 0, $size)" />
+                <xsl:text>...</xsl:text>
+                <xsl:value-of select="substring($value, string-length($value) - $size)" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$value" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <!-- Gestion pluriel/singulier -->
+    <xsl:template name="grammaticalNumber">
+        <xsl:param name="term" />
+        <xsl:param name="nb" />
+
+        <xsl:choose>
+            <xsl:when test="$nb = 0">
+                No <xsl:value-of select="concat($term, 's')" />
+            </xsl:when>
+            <xsl:when test="$nb &lt; 2">
+                <xsl:value-of select="concat($nb, ' ', $term)" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($nb, ' ', $term, 's')" />
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>

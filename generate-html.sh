@@ -15,7 +15,7 @@ xsltproc $XSL_DIR/screenshot.xsl $XML_FILE > $OUTPUT_DIR/screenshot.html
 
 # Generate rules pages
 PAGE_WEIGHT="totalWeight imageOptimization gzipCompression fileMinification"
-REQUESTS="totalRequests"
+REQUESTS="totalRequests domains notFound"
 RULES="$PAGE_WEIGHT $REQUESTS"
 
 for RULE in $RULES
