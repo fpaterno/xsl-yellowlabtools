@@ -5,9 +5,11 @@
     <xsl:import href="offenders/imageOptimization.xsl"/>
     <xsl:import href="offenders/totalRequests.xsl"/>
     <xsl:import href="offenders/domains.xsl"/>
-    <xsl:import href="offenders/notFound.xsl"/>
+    <xsl:import href="offenders/identicalFiles.xsl"/>
+    <xsl:import href="offenders/smallRequests.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
+    <xsl:import href="offenders/list.xsl"/>
 
     <xsl:include href="templates/helpers.xsl"/>
     <xsl:include href="templates/meta.xsl"/>
@@ -52,14 +54,21 @@
             <xsl:when test="$section = 'domains'">
                 <xsl:apply-templates select="current()" mode="offendersDomains" />
             </xsl:when>
-            <xsl:when test="$section = 'notFound'">
-                <xsl:apply-templates select="current()" mode="offendersNotFound" />
+            <xsl:when test="$section = 'identicalFiles'">
+                <xsl:apply-templates select="current()" mode="offendersIdenticalFiles" />
+            </xsl:when>
+            <xsl:when test="$section = 'smallRequests'">
+                <xsl:apply-templates select="current()" mode="offendersSmallRequests" />
             </xsl:when>
 
             <!-- Grouped rules offenders -->
             <!-- gzipCompression, fileMinification -->
             <xsl:when test="offendersObj/list/files">
                 <xsl:apply-templates select="current()" mode="offendersGainFiles" />
+            </xsl:when>
+            <!-- notFound, emptyRequests -->
+            <xsl:when test="offendersObj/list/list">
+                <xsl:apply-templates select="current()" mode="offendersList" />
             </xsl:when>
         </xsl:choose>
 

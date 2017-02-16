@@ -44,7 +44,7 @@
         <xsl:param name="value" />
         <xsl:param name="size" select="40" />
         <xsl:choose>
-            <xsl:when test="string-length($value) &gt; $size">
+            <xsl:when test="string-length($value) &gt; ($size*2)+3">
                 <xsl:value-of select="substring($value, 0, $size)" />
                 <xsl:text>...</xsl:text>
                 <xsl:value-of select="substring($value, string-length($value) - $size)" />
