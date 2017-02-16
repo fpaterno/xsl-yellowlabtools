@@ -40,13 +40,17 @@
     <xsl:template match="/response/rules/*" mode="offendersDetail">
         <xsl:variable name="section" select="name()" />
         <xsl:choose>
-
-            <!-- Specific rule offenders -->
             <xsl:when test="$section = 'totalWeight'">
                 <xsl:apply-templates select="current()" mode="offendersTotalWeight" />
             </xsl:when>
             <xsl:when test="$section = 'imageOptimization'">
                 <xsl:apply-templates select="current()" mode="offendersImageOptimization" />
+            </xsl:when>
+            <xsl:when test="$section = 'gzipCompression'">
+                <xsl:apply-templates select="current()" mode="offendersGainFiles" />
+            </xsl:when>
+            <xsl:when test="$section = 'fileMinification'">
+                <xsl:apply-templates select="current()" mode="offendersGainFiles" />
             </xsl:when>
             <xsl:when test="$section = 'totalRequests'">
                 <xsl:apply-templates select="current()" mode="offendersTotalRequests" />
@@ -54,20 +58,22 @@
             <xsl:when test="$section = 'domains'">
                 <xsl:apply-templates select="current()" mode="offendersDomains" />
             </xsl:when>
+            <xsl:when test="$section = 'notFound'">
+                <xsl:apply-templates select="current()" mode="offendersList" />
+            </xsl:when>
             <xsl:when test="$section = 'identicalFiles'">
                 <xsl:apply-templates select="current()" mode="offendersIdenticalFiles" />
+            </xsl:when>
+            <xsl:when test="$section = 'emptyRequests'">
+                <xsl:apply-templates select="current()" mode="offendersList" />
             </xsl:when>
             <xsl:when test="$section = 'smallRequests'">
                 <xsl:apply-templates select="current()" mode="offendersSmallRequests" />
             </xsl:when>
-
-            <!-- Grouped rules offenders -->
-            <!-- gzipCompression, fileMinification -->
-            <xsl:when test="offendersObj/list/files">
-                <xsl:apply-templates select="current()" mode="offendersGainFiles" />
+            <xsl:when test="$section = 'lazyLoadableImagesBelowTheFold'">
+                <xsl:apply-templates select="current()" mode="offendersList" />
             </xsl:when>
-            <!-- notFound, emptyRequests -->
-            <xsl:when test="offendersObj/list/list">
+            <xsl:when test="$section = 'hiddenImages'">
                 <xsl:apply-templates select="current()" mode="offendersList" />
             </xsl:when>
         </xsl:choose>
