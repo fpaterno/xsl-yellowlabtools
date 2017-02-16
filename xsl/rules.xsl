@@ -7,6 +7,7 @@
     <xsl:import href="offenders/domains.xsl"/>
     <xsl:import href="offenders/identicalFiles.xsl"/>
     <xsl:import href="offenders/smallRequests.xsl"/>
+    <xsl:import href="offenders/DOMelementMaxDepth.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/list.xsl"/>
@@ -75,6 +76,9 @@
             </xsl:when>
             <xsl:when test="$section = 'hiddenImages'">
                 <xsl:apply-templates select="current()" mode="offendersList" />
+            </xsl:when>
+            <xsl:when test="$section = 'DOMelementMaxDepth'">
+                <xsl:apply-templates select="current()" mode="offendersDOMelementMaxDepth" />
             </xsl:when>
         </xsl:choose>
 
