@@ -58,17 +58,18 @@
     <!-- Gestion pluriel/singulier -->
     <xsl:template name="grammaticalNumber">
         <xsl:param name="term" />
+        <xsl:param name="pluralTerm" select="concat($term, 's')" />
         <xsl:param name="nb" />
 
         <xsl:choose>
             <xsl:when test="$nb = 0">
-                No <xsl:value-of select="concat($term, 's')" />
+                No <xsl:value-of select="$pluralTerm" />
             </xsl:when>
             <xsl:when test="$nb &lt; 2">
                 <xsl:value-of select="concat($nb, ' ', $term)" />
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="concat($nb, ' ', $term, 's')" />
+                <xsl:value-of select="concat($nb, ' ', $pluralTerm)" />
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
