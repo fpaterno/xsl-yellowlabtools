@@ -73,4 +73,22 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
+    <!-- Gestion des noeuds "tree" -->
+    <xsl:template name="treeNode">
+        <xsl:param name="node"/>
+        <xsl:for-each select="$node/*">
+            <div>
+                <span>
+                    <xsl:value-of select="name(.)" />
+                    <xsl:if test="normalize-space(text()) and text() &gt; 1">
+                        <span> (x<xsl:value-of select="text()" />)</span>
+                    </xsl:if>
+                </span>
+                <xsl:call-template name="treeNode">
+                    <xsl:with-param name="node" select="." />
+                </xsl:call-template>
+            </div>
+        </xsl:for-each>
+    </xsl:template>    
 </xsl:stylesheet>

@@ -8,6 +8,9 @@
     <xsl:import href="offenders/identicalFiles.xsl"/>
     <xsl:import href="offenders/smallRequests.xsl"/>
     <xsl:import href="offenders/DOMelementMaxDepth.xsl"/>
+    <xsl:import href="offenders/DOMidDuplicated.xsl"/>
+    <xsl:import href="offenders/number.xsl"/>
+    <xsl:import href="offenders/DOMqueriesAvoidable.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/list.xsl"/>
@@ -79,6 +82,18 @@
             </xsl:when>
             <xsl:when test="$section = 'DOMelementMaxDepth'">
                 <xsl:apply-templates select="current()" mode="offendersDOMelementMaxDepth" />
+            </xsl:when>
+            <xsl:when test="$section = 'DOMidDuplicated'">
+                <xsl:apply-templates select="current()" mode="offendersDOMidDuplicated" />
+            </xsl:when>
+            <xsl:when test="$section = 'DOMaccesses'">
+                <xsl:apply-templates select="current()" mode="offendersNumber" />
+            </xsl:when>
+            <xsl:when test="$section = 'queriesWithoutResults'">
+                <xsl:apply-templates select="current()" mode="offendersNumber" />
+            </xsl:when>
+            <xsl:when test="$section = 'DOMqueriesAvoidable'">
+                <xsl:apply-templates select="current()" mode="offendersDOMqueriesAvoidable" />
             </xsl:when>
         </xsl:choose>
 
