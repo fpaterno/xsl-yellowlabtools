@@ -18,7 +18,8 @@ PAGE_WEIGHT="totalWeight imageOptimization gzipCompression fileMinification"
 REQUESTS="totalRequests domains notFound identicalFiles emptyRequests smallRequests lazyLoadableImagesBelowTheFold hiddenImages"
 DOM_COMPLEX="DOMelementsCount DOMelementMaxDepth iframesCount DOMidDuplicated"
 DOM_MANIP="DOMaccesses queriesWithoutResults DOMqueriesAvoidable"
-RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP"
+SCROLL_BOTTLENECKS="eventsScrollBound DOMaccessesOnScroll"
+RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS"
 
 for RULE in $RULES
 do

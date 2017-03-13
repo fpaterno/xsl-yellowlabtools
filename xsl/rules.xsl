@@ -11,6 +11,8 @@
     <xsl:import href="offenders/DOMidDuplicated.xsl"/>
     <xsl:import href="offenders/number.xsl"/>
     <xsl:import href="offenders/DOMqueriesAvoidable.xsl"/>
+    <xsl:import href="offenders/eventsScrollBound.xsl"/>
+    <xsl:import href="offenders/DOMaccessesOnScroll.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/list.xsl"/>
@@ -94,6 +96,12 @@
             </xsl:when>
             <xsl:when test="$section = 'DOMqueriesAvoidable'">
                 <xsl:apply-templates select="current()" mode="offendersDOMqueriesAvoidable" />
+            </xsl:when>
+            <xsl:when test="$section = 'eventsScrollBound'">
+                <xsl:apply-templates select="current()" mode="offendersEventsScrollBound" />
+            </xsl:when>
+            <xsl:when test="$section = 'DOMaccessesOnScroll'">
+                <xsl:apply-templates select="current()" mode="offendersDOMaccessesOnScroll" />
             </xsl:when>
         </xsl:choose>
 

@@ -11,7 +11,6 @@
                 </xsl:call-template>
             </h3>
 
-
             <div class="offendersHtml">
                 <div>
                     <div class="domTree">
