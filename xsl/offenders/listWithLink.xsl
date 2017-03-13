@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:template match="/response/rules/*" mode="offendersList">
+    <xsl:template match="/response/rules/*" mode="offendersListWithLink">
         <xsl:variable name="offenderName" select="name()" />
         <div class="offenders">
             <h3>

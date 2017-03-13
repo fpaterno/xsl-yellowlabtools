@@ -19,7 +19,8 @@ REQUESTS="totalRequests domains notFound identicalFiles emptyRequests smallReque
 DOM_COMPLEX="DOMelementsCount DOMelementMaxDepth iframesCount DOMidDuplicated"
 DOM_MANIP="DOMaccesses queriesWithoutResults DOMqueriesAvoidable"
 SCROLL_BOTTLENECKS="eventsScrollBound DOMaccessesOnScroll"
-RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS"
+BAD_JAVASCRIPT="jsErrors documentWriteCalls synchronousXHR consoleMessages globalVariables"
+RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT"
 
 for RULE in $RULES
 do

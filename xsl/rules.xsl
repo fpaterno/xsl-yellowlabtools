@@ -11,11 +11,13 @@
     <xsl:import href="offenders/DOMidDuplicated.xsl"/>
     <xsl:import href="offenders/number.xsl"/>
     <xsl:import href="offenders/DOMqueriesAvoidable.xsl"/>
-    <xsl:import href="offenders/eventsScrollBound.xsl"/>
     <xsl:import href="offenders/DOMaccessesOnScroll.xsl"/>
+    <xsl:import href="offenders/documentWriteCalls.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
-    <xsl:import href="offenders/list.xsl"/>
+    <xsl:import href="offenders/listSimple.xsl"/>
+    <xsl:import href="offenders/listWithLink.xsl"/>
+    <xsl:import href="offenders/backtrace.xsl"/>
 
     <xsl:include href="templates/helpers.xsl"/>
     <xsl:include href="templates/meta.xsl"/>
@@ -65,22 +67,22 @@
                 <xsl:apply-templates select="current()" mode="offendersDomains" />
             </xsl:when>
             <xsl:when test="$section = 'notFound'">
-                <xsl:apply-templates select="current()" mode="offendersList" />
+                <xsl:apply-templates select="current()" mode="offendersListWithLink" />
             </xsl:when>
             <xsl:when test="$section = 'identicalFiles'">
                 <xsl:apply-templates select="current()" mode="offendersIdenticalFiles" />
             </xsl:when>
             <xsl:when test="$section = 'emptyRequests'">
-                <xsl:apply-templates select="current()" mode="offendersList" />
+                <xsl:apply-templates select="current()" mode="offendersListWithLink" />
             </xsl:when>
             <xsl:when test="$section = 'smallRequests'">
                 <xsl:apply-templates select="current()" mode="offendersSmallRequests" />
             </xsl:when>
             <xsl:when test="$section = 'lazyLoadableImagesBelowTheFold'">
-                <xsl:apply-templates select="current()" mode="offendersList" />
+                <xsl:apply-templates select="current()" mode="offendersListWithLink" />
             </xsl:when>
             <xsl:when test="$section = 'hiddenImages'">
-                <xsl:apply-templates select="current()" mode="offendersList" />
+                <xsl:apply-templates select="current()" mode="offendersListWithLink" />
             </xsl:when>
             <xsl:when test="$section = 'DOMelementMaxDepth'">
                 <xsl:apply-templates select="current()" mode="offendersDOMelementMaxDepth" />
@@ -98,10 +100,19 @@
                 <xsl:apply-templates select="current()" mode="offendersDOMqueriesAvoidable" />
             </xsl:when>
             <xsl:when test="$section = 'eventsScrollBound'">
-                <xsl:apply-templates select="current()" mode="offendersEventsScrollBound" />
+                <xsl:apply-templates select="current()" mode="offendersBacktrace" />
             </xsl:when>
             <xsl:when test="$section = 'DOMaccessesOnScroll'">
                 <xsl:apply-templates select="current()" mode="offendersDOMaccessesOnScroll" />
+            </xsl:when>
+            <xsl:when test="$section = 'jsErrors'">
+                <xsl:apply-templates select="current()" mode="offendersBacktrace" />
+            </xsl:when>
+            <xsl:when test="$section = 'documentWriteCalls'">
+                <xsl:apply-templates select="current()" mode="offendersDocumentWriteCalls" />
+            </xsl:when>
+            <xsl:when test="$section = 'globalVariables'">
+                <xsl:apply-templates select="current()" mode="offendersListSimple" />
             </xsl:when>
         </xsl:choose>
 
