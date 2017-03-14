@@ -30,7 +30,12 @@
                                     </div>
 
                                     <div class="on100">
-                                        <xsl:value-of select="/response/scoreProfiles/generic/globalScore"/>/100
+                                        <xsl:choose>
+                                            <xsl:when test="/response/scoreProfiles/generic/globalScore &gt; 0">
+                                                <xsl:value-of select="/response/scoreProfiles/generic/globalScore" />/100
+                                            </xsl:when>
+                                            <xsl:otherwise>0/100</xsl:otherwise>
+                                        </xsl:choose>
                                     </div>
                                 </div>
                             </div>
