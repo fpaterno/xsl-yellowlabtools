@@ -20,7 +20,9 @@ DOM_COMPLEX="DOMelementsCount DOMelementMaxDepth iframesCount DOMidDuplicated"
 DOM_MANIP="DOMaccesses queriesWithoutResults DOMqueriesAvoidable"
 SCROLL_BOTTLENECKS="eventsScrollBound DOMaccessesOnScroll"
 BAD_JAVASCRIPT="jsErrors documentWriteCalls synchronousXHR consoleMessages globalVariables"
-RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT"
+JQUERY="jQueryVersion jQueryVersionsLoaded jQueryCallsOnEmptyObject jQueryNotDelegatedEvents"
+
+RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY"
 
 for RULE in $RULES
 do

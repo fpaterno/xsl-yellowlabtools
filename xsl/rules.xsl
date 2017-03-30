@@ -114,6 +114,9 @@
             <xsl:when test="$section = 'globalVariables'">
                 <xsl:apply-templates select="current()" mode="offendersListSimple" />
             </xsl:when>
+            <xsl:when test="$section = 'jQueryVersionsLoaded'">
+                <xsl:apply-templates select="current()" mode="offendersListSimple" />
+            </xsl:when>
         </xsl:choose>
 
     </xsl:template>
