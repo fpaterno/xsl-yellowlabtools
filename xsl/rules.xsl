@@ -14,8 +14,10 @@
     <xsl:import href="offenders/DOMaccessesOnScroll.xsl"/>
     <xsl:import href="offenders/documentWriteCalls.xsl"/>
     <xsl:import href="offenders/cssRules.xsl"/>
-    <xsl:import href="offenders/cssComplexSelectors.xsl"/>
+    <xsl:import href="offenders/cssRulesByFile.xsl"/>
     <xsl:import href="offenders/cssColors.xsl"/>
+    <xsl:import href="offenders/similarColors.xsl"/>
+    <xsl:import href="offenders/cssBreakpoints.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/listSimple.xsl"/>
@@ -124,10 +126,19 @@
                 <xsl:apply-templates select="current()" mode="offendersCssRules" />
             </xsl:when>
             <xsl:when test="$section = 'cssComplexSelectors'">
-                <xsl:apply-templates select="current()" mode="offendersCssComplexSelectors" />
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByFile" />
             </xsl:when>
             <xsl:when test="$section = 'cssColors'">
                 <xsl:apply-templates select="current()" mode="offendersCssColors" />
+            </xsl:when>
+            <xsl:when test="$section = 'similarColors'">
+                <xsl:apply-templates select="current()" mode="offendersSimilarColors" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssBreakpoints'">
+                <xsl:apply-templates select="current()" mode="offendersCssBreakpoints" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssMobileFirst'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByFile" />
             </xsl:when>
         </xsl:choose>
 

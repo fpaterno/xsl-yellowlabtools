@@ -21,7 +21,7 @@ DOM_MANIP="DOMaccesses queriesWithoutResults DOMqueriesAvoidable"
 SCROLL_BOTTLENECKS="eventsScrollBound DOMaccessesOnScroll"
 BAD_JAVASCRIPT="jsErrors documentWriteCalls synchronousXHR consoleMessages globalVariables"
 JQUERY="jQueryVersion jQueryVersionsLoaded jQueryCallsOnEmptyObject jQueryNotDelegatedEvents"
-CSS_COMPLEX="cssRules cssComplexSelectors"
+CSS_COMPLEX="cssRules cssComplexSelectors cssColors similarColors cssBreakpoints cssMobileFirst"
 
 RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY $CSS_COMPLEX"
 
