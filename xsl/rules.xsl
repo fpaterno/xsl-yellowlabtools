@@ -18,6 +18,11 @@
     <xsl:import href="offenders/cssColors.xsl"/>
     <xsl:import href="offenders/similarColors.xsl"/>
     <xsl:import href="offenders/cssBreakpoints.xsl"/>
+    <xsl:import href="offenders/cssParsingErrors.xsl"/>
+    <xsl:import href="offenders/cssImports.xsl"/>
+    <xsl:import href="offenders/cssDuplicatedSelectors.xsl"/>
+    <xsl:import href="offenders/cssRulesByOffenders.xsl"/>
+    <xsl:import href="offenders/cssOldPropertyPrefixes.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/listSimple.xsl"/>
@@ -139,6 +144,39 @@
             </xsl:when>
             <xsl:when test="$section = 'cssMobileFirst'">
                 <xsl:apply-templates select="current()" mode="offendersCssRulesByFile" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssParsingErrors'">
+                <xsl:apply-templates select="current()" mode="offendersCssParsingErrors" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssImports'">
+                <xsl:apply-templates select="current()" mode="offendersCssImports" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssDuplicatedSelectors'">
+                <xsl:apply-templates select="current()" mode="offendersCssDuplicatedSelectors" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssDuplicatedProperties'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssEmptyRules'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssExpressions'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssImportants'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssOldIEFixes'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssOldPropertyPrefixes'">
+                <xsl:apply-templates select="current()" mode="offendersCssOldPropertyPrefixes" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssRedundantBodySelectors'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'cssRedundantChildNodesSelectors'">
+                <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
             </xsl:when>
         </xsl:choose>
 

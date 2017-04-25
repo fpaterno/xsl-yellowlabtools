@@ -22,8 +22,9 @@ SCROLL_BOTTLENECKS="eventsScrollBound DOMaccessesOnScroll"
 BAD_JAVASCRIPT="jsErrors documentWriteCalls synchronousXHR consoleMessages globalVariables"
 JQUERY="jQueryVersion jQueryVersionsLoaded jQueryCallsOnEmptyObject jQueryNotDelegatedEvents"
 CSS_COMPLEX="cssRules cssComplexSelectors cssColors similarColors cssBreakpoints cssMobileFirst"
+BAD_CSS="cssParsingErrors cssImports cssDuplicatedSelectors cssDuplicatedProperties cssEmptyRules cssExpressions cssImportants cssOldIEFixes cssOldPropertyPrefixes cssRedundantBodySelectors cssRedundantChildNodesSelectors"
 
-RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY $CSS_COMPLEX"
+RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY $CSS_COMPLEX $BAD_CSS"
 
 for RULE in $RULES
 do

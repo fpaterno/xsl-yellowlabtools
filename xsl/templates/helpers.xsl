@@ -90,5 +90,28 @@
                 </xsl:call-template>
             </div>
         </xsl:for-each>
-    </xsl:template>    
+    </xsl:template>
+
+    <!-- Gestion des noeuds de règles CSS -->
+    <xsl:template name="cssFileAndLine">
+        <xsl:param name="node"/>
+        <div class="offenderButton opens">
+            css file
+            <div class="cssFileAndLine">
+                <xsl:if test="$node/file">
+                    <a href="{$node/file}" target="_blank" title="{$node/file}">
+                        <xsl:call-template name="minimizeString">
+                            <xsl:with-param name="value" select="$node/file" />
+                            <xsl:with-param name="size" select="30" />
+                        </xsl:call-template>
+                    </a>
+                </xsl:if>
+                <xsl:if test="normalize-space($node/file/text()) = ''">
+                    &lt;inline CSS&gt;
+                </xsl:if>
+                <xsl:value-of select="concat(' @ ', $node/line, ':', $node/column)" />
+            </div>
+        </div>
+    </xsl:template>
+
 </xsl:stylesheet>
