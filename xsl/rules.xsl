@@ -23,6 +23,9 @@
     <xsl:import href="offenders/cssDuplicatedSelectors.xsl"/>
     <xsl:import href="offenders/cssRulesByOffenders.xsl"/>
     <xsl:import href="offenders/cssOldPropertyPrefixes.xsl"/>
+    <xsl:import href="offenders/fontsCount.xsl"/>
+    <xsl:import href="offenders/heavyFonts.xsl"/>
+    <xsl:import href="offenders/unusedUnicodeRanges.xsl"/>
 
     <xsl:import href="offenders/gainFiles.xsl"/>
     <xsl:import href="offenders/listSimple.xsl"/>
@@ -177,6 +180,15 @@
             </xsl:when>
             <xsl:when test="$section = 'cssRedundantChildNodesSelectors'">
                 <xsl:apply-templates select="current()" mode="offendersCssRulesByOffenders" />
+            </xsl:when>
+            <xsl:when test="$section = 'fontsCount'">
+                <xsl:apply-templates select="current()" mode="offendersFontsCount" />
+            </xsl:when>
+            <xsl:when test="$section = 'heavyFonts'">
+                <xsl:apply-templates select="current()" mode="offendersHeavyFonts" />
+            </xsl:when>
+            <xsl:when test="$section = 'unusedUnicodeRanges'">
+                <xsl:apply-templates select="current()" mode="offendersUnusedUnicodeRanges" />
             </xsl:when>
         </xsl:choose>
 

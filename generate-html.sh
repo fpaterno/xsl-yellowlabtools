@@ -23,8 +23,9 @@ BAD_JAVASCRIPT="jsErrors documentWriteCalls synchronousXHR consoleMessages globa
 JQUERY="jQueryVersion jQueryVersionsLoaded jQueryCallsOnEmptyObject jQueryNotDelegatedEvents"
 CSS_COMPLEX="cssRules cssComplexSelectors cssColors similarColors cssBreakpoints cssMobileFirst"
 BAD_CSS="cssParsingErrors cssImports cssDuplicatedSelectors cssDuplicatedProperties cssEmptyRules cssExpressions cssImportants cssOldIEFixes cssOldPropertyPrefixes cssRedundantBodySelectors cssRedundantChildNodesSelectors"
+WEB_FONT="fontsCount heavyFonts unusedUnicodeRanges"
 
-RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY $CSS_COMPLEX $BAD_CSS"
+RULES="$PAGE_WEIGHT $REQUESTS $DOM_COMPLEX $DOM_MANIP $SCROLL_BOTTLENECKS $BAD_JAVASCRIPT $JQUERY $CSS_COMPLEX $BAD_CSS $WEB_FONT"
 
 for RULE in $RULES
 do
